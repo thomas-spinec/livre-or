@@ -8,18 +8,11 @@
     <main>
         <?php
             // requête pour récupérer tout ce qu'il y a dans la base de données commentaires, ainsi que le login dans la base de donnée utilisateurs correspondant à l'id_utilisateurs de la base de données commentaires
-            $requete = "SELECT commentaires.commentaire, commentaires.date, utilisateurs.login FROM commentaires INNER JOIN utilisateurs ON commentaires.id_utilisateur = utilisateurs.id ORDER BY desc";
+            $requete = "SELECT commentaires.commentaire, DATE_FORMAT(commentaires.date, '%d/%m/%Y') as date, utilisateurs.login FROM commentaires INNER JOIN utilisateurs ON commentaires.id_utilisateur = utilisateurs.id ORDER BY date DESC";
 
             // exécution de la requête
             $exec_requete = $connect -> query($requete);
-
-            // request pour la table commentaires
-            // $request_com = "SELECT * FROM commentaires";
-            // $exec_request_com = $connect -> query($request_com);
-            // $reponse_com = mysqli_fetch_assoc($exec_request_com);
-
-            // request pour la table utilisateurs
-            // $request_user = "SELECT login FROM"
+            
         ?>
 
         <div class="container_livre-or">
@@ -50,10 +43,13 @@
 
             <!-- formulaire pour poster un commentaire -->
             <?php
-                if ($_SESSION['loginOK']){
+                if (isset($_SESSION['loginOK'])){
+                    if ($_SESSION['loginOK']){
+
             ?>
                 <a href='commentaire.php'><button>Laisser un commentaire</button></a>
             <?php
+                    }
                 }
             ?>
 

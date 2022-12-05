@@ -45,6 +45,7 @@
                                 <ul>
                                     <li><a class='a_head'href='index.php'>Accueil</a></li>
                                     <li><a class='a_head' href='profil.php'>Profil</a></li>
+                                    <li><a class='a_head' href='livre-or.php'>Livre d'or</a></li>
                                     <li><a class='a_head' href='admin.php'>Info Utilisateurs</a></li>
                                 </ul>
                             </nav>";
@@ -54,6 +55,7 @@
                                 <ul>
                                     <li><a class='a_head' href='index.php'>Accueil</a></li>
                                     <li><a class='a_head' href='profil.php'>Profil</a></li>
+                                    <li><a class='a_head' href='livre-or.php'>Livre d'or</a></li>
                                 </ul>
                             </nav>";
                         }
@@ -64,6 +66,7 @@
                             <a href='inscription.php'><button>Inscription</button></a>
                             </div>";
                         echo "<a class='a_head' href='index.php'>Accueil</a>";
+                        echo "<a class='a_head' href='livre-or.php'>Livre d'or</a>";
                     }
                 ?>
             </div>
