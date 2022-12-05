@@ -5,6 +5,9 @@
         if (!$_SESSION['loginOK']){
             header('Location: connexion.php');
         }
+        $requete = "SELECT password FROM utilisateurs where login = '".$login."'";
+        $exec_requete = $connect -> query($requete);
+        $reponse = mysqli_fetch_array($exec_requete);
     ?>
 
     <!-- contenu de la page -->
@@ -18,9 +21,6 @@
 
                     // rappel des variable contenant les informations de l'utilisateur
                     $login = $_SESSION['login'];
-                    $password = $_SESSION['password'];
-                    $nom = $_SESSION['nom'];
-                    $prenom = $_SESSION['prenom'];
 
                 ?>
 
@@ -43,35 +43,25 @@
                     <form action="profil.php" method="post">
                         <label for="login">login</label>
                         <input type="text" name="login" id="login" value="<?=$login?>" required>
-                        <label for ="prenom">Prénom</label>
-                        <input type="text" name="prenom" id="prenom" value="<?=$prenom?>" required>
-                        <label for="nom">Nom</label>
-                        <input type="text" name="nom" id="nom" value="<?=$nom?>" required>
                         <label for="password">Mot de passe</label>
                         <input type="password" name="password" id="password" placeholder="Entrez votre mot de passe" required>
                         <input type="submit" value="Modifier">
                     </form>
 
                     <?php
-                        if(isset($_POST['login']) && isset($_POST['prenom']) && isset($_POST['nom']) && isset($_POST['password'])){
-                            $prenom = $_POST['prenom'];
-                            $nom = $_POST['nom'];
+                        if(isset($_POST['login']) && isset($_POST['password'])){
                             $password = $_POST['password'];
                             if ($password != ""){
-                                $requete = "SELECT password FROM utilisateurs where login = '".$login."'";
-                                $exec_requete = $connect -> query($requete);
-                                $reponse = mysqli_fetch_array($exec_requete);
                                 $password_hash = $reponse['password'];
                                 if (password_verify($password, $password_hash)) { //mot de passe correct
                                     // stockage des nouvelles infos dans la BDD
                                     $password = password_hash($password, PASSWORD_DEFAULT);
-                                    $requete = "UPDATE utilisateurs SET login = '".$_POST['login']."', prenom = '".$prenom."', nom = '".$nom."' where login = '".$login."'";
+                                    $requete = "UPDATE utilisateurs SET login = '".$_POST['login']."' where login = '".$login."'";
                                     $exec_requete = $connect -> query($requete);
                                     // stockage des nouvelles infos dans les variables de session
                                     $login = $_POST['login'];
                                     $_SESSION['login'] = $login;
-                                    $_SESSION['prenom'] = $prenom;
-                                    $_SESSION['nom'] = $nom;
+
                                     // redirection vers la page profil avec les nouvelles données
                                     header('Location: profil.php?erreur=0');
                                 }
@@ -122,7 +112,8 @@
                     <?php
                         if(isset($_POST['password1']) && isset($_POST['newpassword']) && isset($_POST['newpassword2'])){
                             if ($_POST['password1'] != ""){
-                                if (password_verify($_POST['password1'], $password)) { // ancien mot de passe correct
+                                $password_hash = $reponse['password'];
+                                if (password_verify($_POST['password1'], $password_hash)) { // ancien mot de passe correct
                                     if (isset($_POST['newpassword']) && $_POST['newpassword'] !== '' && isset($_POST['newpassword2']) && $_POST['newpassword2'] !== ''){
                                         if ($_POST['newpassword'] == $_POST['newpassword2']){ // nouveau mot de passe correct
                                             $password = password_hash($_POST['newpassword'], PASSWORD_BCRYPT);

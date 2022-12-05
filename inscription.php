@@ -27,10 +27,6 @@
                     <form action="inscription.php" method="post">
                         <label for="login">login</label>
                         <input type="text" name="login" id="login" placeholder="login" required>
-                        <label for="prenom">Prénom</label>
-                        <input type="text" name="prenom" id="prenom" placeholder="Prénom" required>
-                        <label for="nom">Nom</label>
-                        <input type="text" name="nom" id="nom" placeholder="Nom" required>
                         <label for="password">Mot de passe</label>
                         <input type="password" name="password" id="password" placeholder="Mot de passe" required>
                         <label for="password2">Confirmation du mot de passe</label>
@@ -41,14 +37,12 @@
             </div>
 
             <?php
-                if(isset($_POST['login']) && isset($_POST['password']) && isset($_POST['prenom']) && isset($_POST['nom'])){
+                if(isset($_POST['login']) && isset($_POST['password'])){
                     $login = mysqli_real_escape_string($connect,htmlspecialchars($_POST['login']));
                     $password = mysqli_real_escape_string($connect,htmlspecialchars($_POST['password']));
                     $password2 = mysqli_real_escape_string($connect,htmlspecialchars($_POST['password2']));
-                    $prenom = mysqli_real_escape_string($connect,htmlspecialchars($_POST['prenom']));
-                    $nom = mysqli_real_escape_string($connect,htmlspecialchars($_POST['nom']));
 
-                    if($login !== "" && $password !== "" && $password2 !== "" && $prenom !== "" && $nom !== ""){
+                    if($login !== "" && $password !== "" && $password2 !== ""){
                         if($password == $password2){
                             $requete = "SELECT count(*) FROM utilisateurs where login = '".$login."'";
                             $exec_requete = $connect -> query($requete);
@@ -57,7 +51,7 @@
 
                             if($count==0){
                                 $password = password_hash($password, PASSWORD_DEFAULT);
-                                $requete = "INSERT INTO utilisateurs (login, prenom, nom, password) VALUES ('".$login."', '".$prenom."', '".$nom."', '".$password."')";
+                                $requete = "INSERT INTO utilisateurs (login, password) VALUES ('".$login."', '".$password."')";
                                 $exec_requete = $connect -> query($requete);
                                 header('Location: connexion.php');
                             }
