@@ -1,7 +1,7 @@
 <?php
 // Connexion à la base de données en local
 
-$connect = new mysqli('localhost', 'root', '', 'moduleconnexion');
+$connect = new mysqli('localhost', 'root', '', 'livreor');
 
 // Connexion à la base de données en ligne
 
