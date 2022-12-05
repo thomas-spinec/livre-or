@@ -29,8 +29,9 @@ h2 {
 }
 
 h3 {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
+  line-height: 1;
 }
 
 h4 {
@@ -50,7 +51,7 @@ h4 {
 header {
   /* display: block; */
   background-color: #47b5ff;
-  color: #333;
+  color: #fff;
   position: fixed;
   width: 100%;
   min-height: 110px;
@@ -71,6 +72,7 @@ header {
   justify-content: center;
   align-items: center;
   margin-left: 10%;
+  line-height: 1;
 }
 
 header ul {
@@ -83,16 +85,18 @@ header ul {
 
 header li {
   padding-right: 10px;
+  line-height: 2;
 }
 
 header button {
   background-color: #dff6ff;
-  border: 1px solid #7d7d7d;
+  border: 1px solid #7d7d7d9a;
   border-radius: 15px;
   color: #333;
   font-size: 20px;
   /* font-weight: bold; */
-  padding: 5px;
+  padding: 10px;
+  margin-top: 0;
   margin-bottom: 5px;
   margin-right: 10px;
   margin-left: 10px;
@@ -105,9 +109,9 @@ header button:hover {
 }
 
 .a_head {
-  color: #333;
+  color: #fff;
   transition: 0.5s;
-  padding: 5px 10px;
+  padding: 10px 15px;
   margin: 0px 10px;
   font-size: 20px;
 }
@@ -115,6 +119,7 @@ header button:hover {
 .a_head:hover {
   background-color: #88dfff;
   border-radius: 15px;
+  padding: 10px 15px;
 }
 
 /* *****************
@@ -173,12 +178,12 @@ main {
 
 main button {
   background-color: #88dfff;
-  border: 1px solid #7d7d7d;
+  border: 1px solid #1363df66;
   border-radius: 15px;
   color: #333;
   font-size: 20px;
   /* font-weight: bold; */
-  padding: 5px;
+  padding: 10px;
   margin-bottom: 5px;
   margin-right: 10px;
   margin-left: 10px;
@@ -188,6 +193,17 @@ main button {
 
 main button:hover {
   background-color: #c6eefd;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.center p {
+  font-size: 20px;
 }
 
 /* *****************
@@ -314,4 +330,57 @@ table {
 
 .morpion {
   font-size: 20px;
+}
+
+/* *****************
+    livre d'or
+****************** */
+
+.commentaires tbody,
+.commentaires thead {
+  display: block;
+}
+
+.commentaires tbody {
+  height: 40vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.commentaires {
+  width: 60%;
+  margin: auto;
+  border: 1px solid #7d7d7d;
+  background-color: #fafafa;
+  /* border-radius: 15px; */
+  box-shadow: 0 0 10px #7d7d7d;
+}
+
+.commentaires th {
+  border-bottom: #1363df;
+  border-bottom-style: solid;
+  border-bottom-width: 1.5px;
+  border-left: none;
+  border-right: none;
+}
+
+.commentaires td {
+  padding: 20px;
+  border-bottom: #1363df;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-left: none;
+  border-right: none;
+}
+
+.date {
+  width: 15%;
+}
+
+.user {
+  width: 15%;
+}
+
+.comm {
+  width: 70%;
 }

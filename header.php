@@ -65,8 +65,10 @@
                             <a href='connexion.php'><button>Connexion</button></a>
                             <a href='inscription.php'><button>Inscription</button></a>
                             </div>";
-                        echo "<a class='a_head' href='index.php'>Accueil</a>";
-                        echo "<a class='a_head' href='livre-or.php'>Livre d'or</a>";
+                        echo "<div>
+                            <a class='a_head' href='index.php'>Accueil</a>
+                            <a class='a_head' href='livre-or.php'>Livre d'or</a>
+                            </div>";
                     }
                 ?>
             </div>

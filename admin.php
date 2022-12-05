@@ -20,8 +20,6 @@
                     <thead>
                         <tr>
                             <th>Nom d'utilisateur</th>
-                            <th>Prénom</th>
-                            <th>Nom</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,8 +30,6 @@
                             {
                                 echo "<tr>";
                                 echo "<td>".$result['login']."</td>";
-                                echo "<td>".$result['prenom']."</td>";
-                                echo "<td>".$result['nom']."</td>";
                                 echo "</tr>";
                             }
                         ?>

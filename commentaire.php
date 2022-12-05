@@ -28,10 +28,15 @@
     <?php
         if(isset($_POST['commentaire'])){
             $commentaire = mysqli_real_escape_string($connect,htmlspecialchars($_POST['commentaire']));
-            $date = date("y/m/j"); 
-            $requete = "INSERT INTO commentaires (commentaire, id_utilisateur, date) VALUES ('".$commentaire."', '".$id."', '".$date."')";
-            $exec_requete = $connect -> query($requete);
-            header('Location: livre-or.php');
+            $date = date("Y/m/j"); 
+            if ($commentaire !== ""){
+                $requete = "INSERT INTO commentaires (commentaire, id_utilisateur, date) VALUES ('".$commentaire."', '".$id."', '".$date."')";
+                $exec_requete = $connect -> query($requete);
+                header('Location: livre-or.php');
+            }
+            else{
+                header('Location: commentaire.php?erreur=1'); // commentaire vide
+            }
         }
     ?>
 

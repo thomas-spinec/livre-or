@@ -15,43 +15,55 @@
             
         ?>
 
-        <div class="container_livre-or">
-            <h1>Livre d'or</h1>
-            <div class="container_commentaires">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Posté le :</th>
-                            <th>Par l'utilisateur :</th>
-                            <th>Commentaires</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
-                            // affichage des commentaires
-                            while ($reponse = mysqli_fetch_assoc($exec_requete)){
-                                echo "<tr>";
-                                echo "<td>".$reponse['date']."</td>";
-                                echo "<td>".$reponse['login']."</td>";
-                                echo "<td>".$reponse['commentaire']."</td>";
-                                echo "</tr>";
-                            }
-                        ?>
-                    </tbody>
-                </table>
-            </div>
+        <div class="container">
 
-            <!-- formulaire pour poster un commentaire -->
+            <!-- Vérif si connecté ou pas -->
             <?php
                 if (isset($_SESSION['loginOK'])){
                     if ($_SESSION['loginOK']){
 
             ?>
-                <a href='commentaire.php'><button>Laisser un commentaire</button></a>
+                <div class="center">
+                    <a href='commentaire.php'><button>Laisser un commentaire</button></a>
+                </div>
             <?php
                     }
                 }
+                else 
+                {
             ?>
+                <div class="center">
+                    <p>Vous devez être connecté pour laisser un commentaire</p>
+                    <a href='connexion.php'><button>Se connecter</button></a>
+                </div>
+            <?php
+                }
+            ?>
+
+            <!-- Affichage des commentaires -->
+            <h1>Livre d'or</h1>
+            <table class="commentaires">
+                <thead>
+                    <tr>
+                        <th class="date">Posté le</th>
+                        <th class="user">Par l'utilisateur</th>
+                        <th class="comm">Commentaires</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        // affichage des commentaires
+                        while ($reponse = mysqli_fetch_assoc($exec_requete)){
+                            echo "<tr>";
+                            echo "<td class='date'>".$reponse['date']."</td>";
+                            echo "<td class='user'>".$reponse['login']."</td>";
+                            echo "<td class='comm'>".$reponse['commentaire']."</td>";
+                            echo "</tr>";
+                        }
+                    ?>
+                </tbody>
+            </table>
+        </div>
 
     </main>
 
