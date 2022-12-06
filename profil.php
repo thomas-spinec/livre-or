@@ -5,6 +5,9 @@
         if (!$_SESSION['loginOK']){
             header('Location: connexion.php');
         }
+        // rappel des variable contenant les informations de l'utilisateur
+        $login = $_SESSION['login'];
+
         $requete = "SELECT password FROM utilisateurs where login = '".$login."'";
         $exec_requete = $connect -> query($requete);
         $reponse = mysqli_fetch_array($exec_requete);
@@ -18,9 +21,6 @@
                 <?php
                     echo "<p>Bonjour $user</p>";
                     echo "<p>Voici vos informations:</p>";
-
-                    // rappel des variable contenant les informations de l'utilisateur
-                    $login = $_SESSION['login'];
 
                 ?>
 

@@ -15,6 +15,13 @@
         <div class="container">
             <div class="background_form">
                 <h1>Laissez un commentaire</h1>
+                <?php
+                    if (isset($_GET['erreur'])) {
+                        if ($_GET['erreur'] == 1)
+                            echo "<p style='color:red'>Ne pas envoyer avec le champ vide</p>";
+                    }
+                ?>
+
                 <form action="" method="post">
                     <label for="commentaire">Commentaire :</label>
                     <textarea name="commentaire" id="commentaire" cols="30" rows="10"></textarea>
