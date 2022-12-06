@@ -35,9 +35,9 @@
     <?php
         if(isset($_POST['commentaire'])){
             $commentaire = mysqli_real_escape_string($connect,htmlspecialchars($_POST['commentaire']));
-            $date = date("Y/m/j"); 
+            // $date = date("Y/m/j");
             if ($commentaire !== ""){
-                $requete = "INSERT INTO commentaires (commentaire, id_utilisateur, date) VALUES ('".$commentaire."', '".$id."', '".$date."')";
+                $requete = "INSERT INTO commentaires (commentaire, id_utilisateur, date) VALUES ('$commentaire', $id, NOW())";
                 $exec_requete = $connect -> query($requete);
                 header('Location: livre-or.php');
             }
