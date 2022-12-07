@@ -8,7 +8,7 @@
     <main>
         <?php
             // requête pour récupérer tout ce qu'il y a dans la base de données commentaires, ainsi que le login dans la base de donnée utilisateurs correspondant à l'id_utilisateurs de la base de données commentaires
-            $requete = "SELECT commentaires.commentaire, DATE_FORMAT(commentaires.date, '%d/%m/%Y') as date, utilisateurs.login FROM commentaires INNER JOIN utilisateurs ON commentaires.id_utilisateur = utilisateurs.id ORDER BY date DESC";
+            $requete = "SELECT commentaires.id, commentaires.commentaire, DATE_FORMAT(commentaires.date, '%d/%m/%Y') as date, utilisateurs.login FROM commentaires INNER JOIN utilisateurs ON commentaires.id_utilisateur = utilisateurs.id ORDER BY id DESC";
 
             // exécution de la requête
             $exec_requete = $connect -> query($requete);
@@ -47,6 +47,7 @@
                     if ($_SESSION['loginOK']){
 
             ?>
+            <br>
                 <div class="center">
                     <a href='commentaire.php'><button>Laisser un commentaire</button></a>
                 </div>
@@ -63,7 +64,7 @@
             <?php
                 }
             ?>
-            
+
         </div>
 
     </main>
