@@ -17,29 +17,6 @@
 
         <div class="container">
 
-            <!-- Vérif si connecté ou pas -->
-            <?php
-                if (isset($_SESSION['loginOK'])){
-                    if ($_SESSION['loginOK']){
-
-            ?>
-                <div class="center">
-                    <a href='commentaire.php'><button>Laisser un commentaire</button></a>
-                </div>
-            <?php
-                    }
-                }
-                else 
-                {
-            ?>
-                <div class="center">
-                    <p>Vous devez être connecté pour laisser un commentaire</p>
-                    <a href='connexion.php'><button>Se connecter</button></a>
-                </div>
-            <?php
-                }
-            ?>
-
             <!-- Affichage des commentaires -->
             <h1>Livre d'or</h1>
             <table class="commentaires">
@@ -63,6 +40,30 @@
                     ?>
                 </tbody>
             </table>
+
+            <!-- Vérif si connecté ou pas -->
+            <?php
+                if (isset($_SESSION['loginOK'])){
+                    if ($_SESSION['loginOK']){
+
+            ?>
+                <div class="center">
+                    <a href='commentaire.php'><button>Laisser un commentaire</button></a>
+                </div>
+            <?php
+                    }
+                }
+                else 
+                {
+            ?>
+                <div class="center">
+                    <p>Vous devez être connecté pour laisser un commentaire</p>
+                    <a href='connexion.php'><button>Se connecter</button></a>
+                </div>
+            <?php
+                }
+            ?>
+            
         </div>
 
     </main>
